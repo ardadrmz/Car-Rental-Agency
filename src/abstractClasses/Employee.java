@@ -1,17 +1,35 @@
 package abstractClasses;
 import enums.UserRole;
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
-/**
- *
- * @author ardad
- */
 public abstract class Employee extends User{
-    private String employeeID;
     private String branchLocation;
     private double salary;
-    private UserRole role;
+
+    public Employee(String branchLocation, double salary, String name, String contactNo, String userID, UserRole role) {
+        super(name, contactNo, userID, role);
+        this.branchLocation = branchLocation;
+        this.salary = salary;
+    }
+
+    public String getBranchLocation() {
+        return branchLocation;
+    }
+
+    public void setBranchLocation(String branchLocation) {
+        this.branchLocation = branchLocation;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+    
+    @Override
+    public String toString(){
+        return super.toString() + "," + getBranchLocation() + "," + getSalary();
+    }
+    
 }

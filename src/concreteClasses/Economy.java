@@ -5,7 +5,12 @@
 package concreteClasses;
 
 import abstractClasses.Vehicle;
+import enums.VehicleStatus;
 
 public class Economy extends Vehicle {
+
+    public Economy(String licensePlate, String brandName, double dailyRate, int mileage, VehicleStatus status) {
+        super(licensePlate, brandName, dailyRate, mileage, status);
+    }
     
 }

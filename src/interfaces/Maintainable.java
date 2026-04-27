@@ -10,6 +10,5 @@ package interfaces;
  */
 public interface Maintainable {
     public void scheduleMaintenance();
-    public void completeMaintenance();
-    
+    public void completeMaintenance();    
 }

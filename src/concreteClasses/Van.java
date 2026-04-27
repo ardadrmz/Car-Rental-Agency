@@ -5,8 +5,13 @@
 package concreteClasses;
 
 import abstractClasses.Vehicle;
+import enums.VehicleStatus;
 
 
 public class Van extends Vehicle {
+
+    public Van(String licensePlate, String brandName, double dailyRate, int mileage, VehicleStatus status) {
+        super(licensePlate, brandName, dailyRate, mileage, status);
+    }
     
 }

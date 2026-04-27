@@ -1,15 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package concreteClasses;
 
 import abstractClasses.Employee;
+import enums.UserRole;
 
-/**
- *
- * @author ardad
- */
+
 public class Mechanic extends Employee {
+
+    public Mechanic(String branchLocation, double salary, String name, String contactNo, String userID, UserRole role) {
+        super(branchLocation, salary, name, contactNo, userID, role);
+    }
     
 }
