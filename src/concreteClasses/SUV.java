@@ -10,7 +10,12 @@ import enums.VehicleStatus;
 public class SUV extends Vehicle {
 
     public SUV(String licensePlate, String brandName, double dailyRate, int mileage, VehicleStatus status) {
-        super(licensePlate, brandName, dailyRate, mileage, status);
+        super(licensePlate, brandName, 200.0, mileage, status);
+    }
+    
+    @Override
+    public double calculateInsuranceCost(){
+        return 2000.0;
     }
     
     

@@ -76,6 +76,6 @@ public abstract class Vehicle implements Maintainable{
         return getLicensePlate() + "," + getBrandName() + "," + getDailyRate() + "," + getMileage() + "," + getStatus();
     }
     
-    
+    public abstract double calculateInsuranceCost();
     
 }
