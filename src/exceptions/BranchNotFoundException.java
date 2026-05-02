@@ -9,7 +9,7 @@ package exceptions;
  * @author ardad
  */
 public class BranchNotFoundException extends Exception {
-    public BranchNotFoundException(String msg) {
-        super(msg);
+    public BranchNotFoundException(String branchName) {
+        super("Branch : " + branchName + " not found!");
     }
 }

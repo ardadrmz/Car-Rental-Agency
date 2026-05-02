@@ -9,7 +9,7 @@ package exceptions;
  * @author ardad
  */
 public class VehicleNotAvailable extends Exception {   
-    public VehicleNotAvailable(String msg) {
-        super(msg);
+    public VehicleNotAvailable(String licensePlate) {
+        super("Vehicle : " + licensePlate+ " is not available right now!" );
     }
 }

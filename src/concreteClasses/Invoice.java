@@ -5,28 +5,47 @@
 package concreteClasses;
 
 public class Invoice {
+
     private String invoiceID;
     private Reservation reservation;
     private double baseAmount;
     private double discountAmount;
-    private double finalAmount;   
+    private double finalAmount;
 
     public Invoice(String invoiceID, Reservation reservation) {
         this.invoiceID = invoiceID;
         this.reservation = reservation;
-        
+
         calculateTotal();
     }
-    
-    public void calculateTotal(){
-        
+
+    public void calculateTotal() {
         long days = reservation.calculateTotalDays();
-        double discountRate = reservation.getVehicle().getDailyRate();
-        this.discountAmount = this.baseAmount * discountRate;
-        
+        double dailyRate = reservation.getVehicle().getDailyRate();
+
+        this.baseAmount = days * dailyRate;
+        double loyaltyDiscount = reservation.getCustomer().getDiscountRate();
+        this.discountAmount = this.baseAmount * loyaltyDiscount;
         this.finalAmount = this.baseAmount - this.discountAmount;
-        
+        System.out.println("Total amount to pay: " + finalAmount);
     }
+
+    public String getInvoiceID() {
+        return invoiceID;
+    }
+
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public double getBaseAmount() {
+        return baseAmount;
+    }
+
+    public double getDiscountAmount() {
+        return discountAmount;
+    }
+    
 
     public double getFinalAmount() {
         return finalAmount;
@@ -35,11 +54,10 @@ public class Invoice {
     public void setFinalAmount(double finalAmount) {
         this.finalAmount = finalAmount;
     }
+
     @Override
-    public String toString(){
-        return invoiceID + "," + 
-               reservation.getReservationID() + "," + baseAmount + "," + discountAmount + "," + finalAmount;
+    public String toString() {
+        return invoiceID + ","
+                + reservation.getReservationID() + "," + baseAmount + "," + discountAmount + "," + finalAmount;
     }
-    
-    
 }

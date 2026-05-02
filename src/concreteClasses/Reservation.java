@@ -9,12 +9,13 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class Reservation {
+
     private String reservationID;
     private Customer customer;
     private Vehicle vehicle;
     private LocalDate startDate;
     private LocalDate endDate;
-    private String status; 
+    private String status;
 
     public Reservation(String reservationID, Customer customer, Vehicle vehicle, LocalDate startDate, LocalDate endDate, String status) {
         this.reservationID = reservationID;
@@ -24,8 +25,8 @@ public class Reservation {
         this.endDate = endDate;
         this.status = status;
     }
-    
-    public long calculateTotalDays(){
+
+    public long calculateTotalDays() {
         return ChronoUnit.DAYS.between(startDate, endDate);
     }
 
@@ -76,10 +77,9 @@ public class Reservation {
     public void setStatus(String status) {
         this.status = status;
     }
+
     @Override
-    public String toString(){
-        return getReservationID() + "," + customer.getName() + "," + vehicle.getLicensePlate() + "," + startDate + ","  + endDate + ","  + status;
+    public String toString() {
+        return getReservationID() + "," + customer.getName() + "," + vehicle.getLicensePlate() + "," + startDate + "," + endDate + "," + status;
     }
 }
-
-

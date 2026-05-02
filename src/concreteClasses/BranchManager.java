@@ -12,9 +12,10 @@ public class BranchManager extends Employee {
     public void raise(Employee e, double raiseAmount) {
         if (raiseAmount <= 0) {
             System.err.println("Please enter a valid salary!");
+            return;
         }
         e.setSalary(e.getSalary() + raiseAmount);
-        System.out.println("Employee" + e.getUserID() + " got promoted by " + e.getSalary());
+        System.out.println("Employee" + e.getUserID() + " is promoted by " + raiseAmount + "TL");
     }
     
     public double calculateOngoings(java.util.List<Employee> employeeList){

@@ -8,7 +8,7 @@ package enums;
  *
  * @author ardad
  */
-public enum LoyatlyTier {
+public enum LoyaltyTier {
     NONE,BRONZE,SIVLER,GOLD;
     
 }

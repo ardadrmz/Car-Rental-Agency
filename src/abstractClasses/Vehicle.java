@@ -1,6 +1,8 @@
 package abstractClasses;
 
 import enums.VehicleStatus;
+import static enums.VehicleStatus.AVAILABLE;
+import static enums.VehicleStatus.IN_MAINTENANCE;
 import interfaces.Maintainable;
 
 
@@ -61,13 +63,13 @@ public abstract class Vehicle implements Maintainable{
     
     @Override
     public void scheduleMaintenance() {
-        setStatus(VehicleStatus.IN_MAINTENANCE); 
+        setStatus(IN_MAINTENANCE); 
         System.out.println("Maintenance scheduled : " + getBrandName() + "(" + getLicensePlate() + ")");
     }
     
     @Override 
     public void completeMaintenance(){
-        setStatus(VehicleStatus.AVAILABLE);
+        setStatus(AVAILABLE);
         System.out.println("Maintenance completed :" + getBrandName() + "(" + getLicensePlate() + ")");
     }
     

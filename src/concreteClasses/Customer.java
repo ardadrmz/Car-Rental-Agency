@@ -1,27 +1,25 @@
-
 package concreteClasses;
 
 import abstractClasses.User;
 import enums.UserRole;
 
-
 public class Customer extends User {
-    
+
     private String loyaltyTier;
     private int loyaltyPts;
 
     public Customer(String name, String contactNo, String userID, UserRole role) {
-        super(name, contactNo, userID, role);
-        
+        super(name, contactNo, userID, UserRole.CUSTOMER);
+
         this.loyaltyPts = 0;
         this.loyaltyTier = "Bronze";
     }
-    
+
     public void addLoyaltyPts(int pts) {
         this.loyaltyPts += pts;
-        updateLoyaltyTier();    
+        updateLoyaltyTier();
     }
-    
+
     public void updateLoyaltyTier() {
         if (this.loyaltyPts >= 500) {
             this.loyaltyTier = "Gold";
@@ -31,13 +29,16 @@ public class Customer extends User {
             this.loyaltyTier = "Bronze";
         }
     }
-    
-    public double getDiscountRate(){
-        switch(this.loyaltyTier){
-            case "Gold" : return 0.20;
-            case "Silver" : return 0.10;
+
+    public double getDiscountRate() {
+        switch (this.loyaltyTier) {
+            case "Gold":
+                return 0.20;
+            case "Silver":
+                return 0.10;
             case "Bronze":
-            default: return 0.00;    
+            default:
+                return 0.00;
         }
     }
 
@@ -48,10 +49,10 @@ public class Customer extends User {
     public int getLoyaltyPts() {
         return loyaltyPts;
     }
-    
+
     @Override
-    public String toString(){
-        return super.toString() + ","  + getLoyaltyTier() + "," + getLoyaltyPts();
+    public String toString() {
+        return super.toString() + "," + getLoyaltyTier() + "," + getLoyaltyPts();
     }
-    
+
 }

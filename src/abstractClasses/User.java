@@ -1,8 +1,9 @@
-package abstractClasses;
+    package abstractClasses;
 
 import enums.UserRole;
 
 public abstract class User {
+
     private String name;
     private String contactNo;
     private String userID;
@@ -46,10 +47,10 @@ public abstract class User {
     public void setRole(UserRole role) {
         this.role = role;
     }
-   
+
     @Override
-    public String toString(){
+    public String toString() {
         return getUserID() + "," + getName() + "," + getContactNo() + "," + getRole();
     }
-       
+
 }
