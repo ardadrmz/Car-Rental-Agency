@@ -33,14 +33,15 @@ public class RentalAgent extends Employee {
     }
 
     public void processReturn(Vehicle v, boolean isDamaged) {
-        System.out.println("Agent " + this.getName() + "is receiving vehicle : " + v.getLicensePlate());
+        System.out.println("Agent " + this.getName() + " is receiving vehicle : " + v.getLicensePlate());
 
         if (isDamaged) {
             System.out.println("Damage occured! Scheduling maintenance!");
             v.scheduleMaintenance();
+        } else {
+            v.setStatus(AVAILABLE);
+            System.out.println("Vehicle " + v.getLicensePlate() + " is now available.");
         }
-        v.setStatus(AVAILABLE);
-        System.out.println("Vehicle " + v.getLicensePlate() + " is now available.");
     }
 
     public void generateEstimateCost(Vehicle v, int days) {

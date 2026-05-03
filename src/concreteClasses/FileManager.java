@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package concreteClasses;
 
 import java.io.*;
 import java.util.List;
 import abstractClasses.Vehicle;
-import enums.LoyaltyTier;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class FileManager {
 
@@ -46,7 +43,7 @@ public class FileManager {
 
             bWriter.write(v.getClass().getSimpleName() + "," + v.toString());
             bWriter.newLine();
-            System.out.println(v.getClass().getSimpleName() + " " + v.getLicensePlate() + " saved successfully! Vroom! 💨");
+            System.out.println(v.getClass().getSimpleName() + " " + v.getLicensePlate() + " saved successfully!");
 
         } catch (IOException e) {
             System.err.println("An error occurred during writing to file: " + e.getMessage());
@@ -105,9 +102,9 @@ public class FileManager {
         }
     }
 
-    public static java.util.List<Customer> loadCustomers() {
+    public static List<Customer> loadCustomers() {
 
-        java.util.List<Customer> customerList = new java.util.ArrayList<>();
+        List<Customer> customerList = new ArrayList<>();
         BufferedReader bReader = null;
 
         try {
@@ -151,9 +148,9 @@ public class FileManager {
         return customerList;
     }
 
-    public static java.util.List<Vehicle> loadVehicles() {
+    public static List<Vehicle> loadVehicles() {
 
-        java.util.List<Vehicle> vehicleList = new java.util.ArrayList<>();
+        List<Vehicle> vehicleList = new ArrayList<>();
         BufferedReader bReader = null;
 
         try {
@@ -170,23 +167,28 @@ public class FileManager {
                 String vehicleType = data[0];
                 String licensePlate = data[1];
                 String brandName = data[2];
-                int mileage = Integer.parseInt(data[3]);
-                enums.VehicleStatus status = enums.VehicleStatus.valueOf(data[4]);
+                int mileage = (int) Double.parseDouble(data[3]);
+                enums.VehicleStatus status = enums.VehicleStatus.valueOf(data[4].toUpperCase());
+                
+                String branchLocation = "İstanbul";
+                if (data.length > 5) {
+                    branchLocation = data[5];
+                }
 
                 Vehicle loadedVehicle = null;
 
                 switch (vehicleType) {
                     case "Economy":
-                        loadedVehicle = new Economy(licensePlate, brandName, mileage, status);
+                        loadedVehicle = new Economy(licensePlate, brandName, mileage, status, branchLocation);
                         break;
                     case "Luxury":
-                        loadedVehicle = new Luxury(licensePlate, brandName, mileage, status);
+                        loadedVehicle = new Luxury(licensePlate, brandName, mileage, status, branchLocation);
                         break;
                     case "SUV":
-                        loadedVehicle = new SUV(licensePlate, brandName, mileage, status);
+                        loadedVehicle = new SUV(licensePlate, brandName, mileage, status, branchLocation);
                         break;
                     case "Van":
-                        loadedVehicle = new Van(licensePlate, brandName, mileage, status);
+                        loadedVehicle = new Van(licensePlate, brandName, mileage, status, branchLocation);
                         break;
                 }
 
@@ -215,9 +217,9 @@ public class FileManager {
         return vehicleList;
     }
 
-    public static java.util.List<Reservation> loadReservations(java.util.List<Customer> customers, java.util.List<Vehicle> vehicles) {
+    public static List<Reservation> loadReservations(List<Customer> customers, List<Vehicle> vehicles) {
 
-        java.util.List<Reservation> reservationList = new java.util.ArrayList<>();
+        List<Reservation> reservationList = new ArrayList<>();
         BufferedReader bReader = null;
 
         try {
@@ -234,8 +236,8 @@ public class FileManager {
                 String resID = data[0];
                 String customerName = data[1];
                 String licensePlate = data[2];
-                java.time.LocalDate startDate = java.time.LocalDate.parse(data[3]);
-                java.time.LocalDate endDate = java.time.LocalDate.parse(data[4]);
+                LocalDate startDate = LocalDate.parse(data[3]);
+                LocalDate endDate = LocalDate.parse(data[4]);
                 String status = data[5];
 
                 Customer linkedCustomer = null;
@@ -280,9 +282,9 @@ public class FileManager {
         return reservationList;
     }
 
-    public static java.util.List<Invoice> loadInvoices(java.util.List<Reservation> reservations) {
+    public static List<Invoice> loadInvoices(List<Reservation> reservations) {
 
-        java.util.List<Invoice> invoiceList = new java.util.ArrayList<>();
+        List<Invoice> invoiceList = new ArrayList<>();
         BufferedReader bReader = null;
 
         try {
@@ -331,6 +333,42 @@ public class FileManager {
         }
 
         return invoiceList;
+    }
+
+    public static void updateCustomerFile(List<Customer> updatedList) {
+        try (FileWriter writer = new FileWriter(CUSTOMER_FILE, false);
+             BufferedWriter bWriter = new BufferedWriter(writer)) {
+            for (Customer c : updatedList) {
+                bWriter.write(c.toString());
+                bWriter.newLine();
+            }
+        } catch (IOException e) {
+            System.err.println("Error updating customer file: " + e.getMessage());
+        }
+    }
+
+    public static void updateVehicleFile(List<Vehicle> updatedList) {
+        try (FileWriter writer = new FileWriter(VEHICLE_FILE, false);
+             BufferedWriter bWriter = new BufferedWriter(writer)) {
+            for (Vehicle v : updatedList) {
+                bWriter.write(v.getClass().getSimpleName() + "," + v.toString());
+                bWriter.newLine();
+            }
+        } catch (IOException e) {
+            System.err.println("Error updating vehicle file: " + e.getMessage());
+        }
+    }
+
+    public static void updateReservationFile(List<Reservation> updatedList) {
+        try (FileWriter writer = new FileWriter(RESERVATION_FILE, false);
+             BufferedWriter bWriter = new BufferedWriter(writer)) {
+            for (Reservation res : updatedList) {
+                bWriter.write(res.toString());
+                bWriter.newLine();
+            }
+        } catch (IOException e) {
+            System.err.println("Error updating reservation file: " + e.getMessage());
+        }
     }
 
 }

@@ -10,7 +10,6 @@ public class Customer extends User {
 
     public Customer(String name, String contactNo, String userID, UserRole role) {
         super(name, contactNo, userID, UserRole.CUSTOMER);
-
         this.loyaltyPts = 0;
         this.loyaltyTier = "Bronze";
     }
@@ -54,5 +53,4 @@ public class Customer extends User {
     public String toString() {
         return super.toString() + "," + getLoyaltyTier() + "," + getLoyaltyPts();
     }
-
 }

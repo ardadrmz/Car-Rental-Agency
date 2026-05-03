@@ -1,0 +1,2 @@
+Economy,123,Toyota,20000,AVAILABLE,Izmir
+Luxury,45678,Ferrari,1000,AVAILABLE,Ankara

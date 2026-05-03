@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package concreteClasses;
 
 import abstractClasses.Vehicle;
@@ -9,13 +5,12 @@ import enums.VehicleStatus;
 
 public class Luxury extends Vehicle {
 
-    public Luxury(String licensePlate, String brandName, int mileage, VehicleStatus status) {
-        super(licensePlate, brandName, 800.0, mileage, status);
+    public Luxury(String licensePlate, String brandName, int mileage, VehicleStatus status, String branchLocation) {
+        super(licensePlate, brandName, 800.0, mileage, status, branchLocation);
     }
 
     @Override
     public double calculateInsuranceCost() {
         return 8000.0;
     }
-
 }
