@@ -1,2 +1,4 @@
 Economy,123,Toyota,20000,AVAILABLE,Izmir
 Luxury,45678,Ferrari,1000,AVAILABLE,Ankara
+SUV,11 XYZ 22,Renault,15000,AVAILABLE,Izmir
+Van,34 ABC 99,Volkswagen,10000,AVAILABLE,Istanbul

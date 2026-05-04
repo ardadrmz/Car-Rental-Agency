@@ -1,5 +1,6 @@
 package CarRentalAgency;
 
+import static CarRentalAgency.CarRentalAgency.AGENCY_NAME;
 import javax.swing.*;
 import java.awt.*;
 import concreteClasses.Customer;
@@ -44,10 +45,11 @@ public class GUIApp {
         headerLabel.setForeground(new Color(44, 62, 80));
         mainPanel.add(headerLabel, BorderLayout.NORTH);
 
-        JPanel buttonPanel = new JPanel(new GridLayout(9, 1, 10, 10));
+        JPanel buttonPanel = new JPanel(new GridLayout(10, 1, 10, 10));
 
         JButton btnVehicles = new JButton("View All Vehicles");
         JButton btnCustomer = new JButton("Register New Customer");
+        JButton btnListCustomer = new JButton("View All Customers");
         JButton btnAddVehicle = new JButton("Register New Vehicle");
 
         JButton btnReservation = new JButton("Agent: Make a Reservation");
@@ -60,8 +62,9 @@ public class GUIApp {
         JButton btnExit = new JButton("Exit System");
 
         btnVehicles.addActionListener(e -> showVehicleWindow());
+        btnListCustomer.addActionListener(e -> showCustomerWindow());
         btnCustomer.addActionListener(e -> showRegisterCustomerWindow());
-        btnAddVehicle.addActionListener(e -> showRegisterVehicleWindow());
+        btnAddVehicle.addActionListener(e -> showRegisterVehicleWindow()); 
         btnReservation.addActionListener(e -> showReservationWindow());
         btnReturn.addActionListener(e -> showReturnWindow());
         btnInvoice.addActionListener(e -> showInvoiceWindow());
@@ -80,6 +83,7 @@ public class GUIApp {
 
         buttonPanel.add(btnVehicles);
         buttonPanel.add(btnCustomer);
+        buttonPanel.add(btnListCustomer);
         buttonPanel.add(btnAddVehicle);
         buttonPanel.add(btnReservation);
         buttonPanel.add(btnReturn);
@@ -95,8 +99,33 @@ public class GUIApp {
         frame.setVisible(true);
     }
 
+    private void showCustomerWindow() {
+        JFrame customerFrame = new JFrame(AGENCY_NAME + " - Customer List");
+        customerFrame.setSize(700, 400);
+
+        String[] cols = {"Name", "Contact No", "User ID", "Loyalty Tier", "Loyalty Points"};
+
+        Object[][] data = new Object[CarRentalAgency.customerList.size()][5];
+
+        for (int i = 0; i < CarRentalAgency.customerList.size(); i++) {
+            Customer c = CarRentalAgency.customerList.get(i);
+            data[i][0] = c.getName();
+            data[i][1] = c.getContactNo();
+            data[i][2] = c.getUserID();
+            data[i][3] = c.getLoyaltyTier();
+            data[i][4] = c.getLoyaltyPts();
+        }
+
+        JTable table = new JTable(data, cols);
+        JScrollPane scrollPane = new JScrollPane(table);
+        
+        customerFrame.add(scrollPane);
+        customerFrame.setLocationRelativeTo(null);
+        customerFrame.setVisible(true);
+    }
+
     private void showVehicleWindow() {
-        JFrame vehicleFrame = new JFrame(CarRentalAgency.AGENCY_NAME + " - Vehicle Fleet");
+        JFrame vehicleFrame = new JFrame(AGENCY_NAME + " - Vehicle Fleet");
         vehicleFrame.setSize(700, 400);
 
         String[] columns = {"Type", "Plate", "Brand", "Mileage", "Status", "Branch"};
@@ -350,7 +379,7 @@ public class GUIApp {
 
         btnRepair.addActionListener(e -> {
             if (damagedDropdown.getSelectedIndex() != -1) {
-                String plate = ((String) damagedDropdown.getSelectedItem()).split(" ")[0];
+                String plate = ((String) damagedDropdown.getSelectedItem()).split(" - ")[0];
 
                 for (Vehicle v : CarRentalAgency.vehicleList) {
                     if (v.getLicensePlate().equals(plate)) {
