@@ -5,13 +5,23 @@ import enums.UserRole;
 
 public class Customer extends User {
 
+    private String contactNo;
     private String loyaltyTier;
     private int loyaltyPts;
 
-    public Customer(String name, String contactNo, String userID, UserRole role) {
-        super(name, contactNo, userID, UserRole.CUSTOMER);
+    public Customer(String name, String contactNo, String userID) {
+        super(name, userID, UserRole.CUSTOMER);
+        this.contactNo = contactNo;
         this.loyaltyPts = 0;
         this.loyaltyTier = "Bronze";
+    }
+
+    public String getContactNo() {
+        return contactNo;
+    }
+
+    public void setContactNo(String contactNo) {
+        this.contactNo = contactNo;
     }
 
     public void addLoyaltyPts(int pts) {
@@ -20,9 +30,9 @@ public class Customer extends User {
     }
 
     public void updateLoyaltyTier() {
-        if (this.loyaltyPts >= 500) {
+        if (this.loyaltyPts >= 1000) {
             this.loyaltyTier = "Gold";
-        } else if (this.loyaltyPts >= 200) {
+        } else if (this.loyaltyPts >= 500) {
             this.loyaltyTier = "Silver";
         } else {
             this.loyaltyTier = "Bronze";
@@ -51,6 +61,6 @@ public class Customer extends User {
 
     @Override
     public String toString() {
-        return super.toString() + "," + getLoyaltyTier() + "," + getLoyaltyPts();
+        return getUserID() + "," + getName() + "," + this.contactNo + "," + getRole() + "," + getLoyaltyTier() + "," + getLoyaltyPts();
     }
 }

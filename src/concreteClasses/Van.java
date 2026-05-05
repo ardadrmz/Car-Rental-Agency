@@ -8,9 +8,14 @@ public class Van extends Vehicle {
     public Van(String licensePlate, String brandName, int mileage, VehicleStatus status, String branchLocation) {
         super(licensePlate, brandName, 400.0, mileage, status, branchLocation);
     }
-
     @Override
     public double calculateInsuranceCost() {
         return 4000.0;
     }
+    @Override
+    public int getDailyMileageLimit() { return 200; }
+
+    @Override
+    public double getMileageOverageRate() { return 8.0; }
+
 }

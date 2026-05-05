@@ -9,5 +9,5 @@ package enums;
  * @author ardad
  */
 public enum VehicleStatus {
-    AVAILABLE,RENTED,IN_MAINTENANCE,RESERVED;
+    AVAILABLE,RENTED,IN_MAINTENANCE;
 }

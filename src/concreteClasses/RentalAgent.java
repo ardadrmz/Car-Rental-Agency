@@ -11,8 +11,8 @@ import java.time.LocalDate;
 
 public class RentalAgent extends Employee {
 
-    public RentalAgent(String branchLocation, double salary, String name, String contactNo, String userID, UserRole role) {
-        super(branchLocation, salary, name, contactNo, userID, UserRole.AGENT);
+    public RentalAgent(String branchLocation, double salary, String name, String userID) {
+        super(branchLocation, salary, name, userID, UserRole.AGENT);
     }
 
     public Reservation createReservation(Customer c, Vehicle v, LocalDate start, LocalDate end) throws VehicleNotAvailable, InvalidReservationException {
@@ -25,10 +25,10 @@ public class RentalAgent extends Employee {
         String newID = "R-" + System.currentTimeMillis();
 
         Reservation newRes = new Reservation(newID, c, v, start, end, "CONFIRMED");
-        
+
         v.setStatus(RENTED);
-        System.out.println("Vehicle " +v.getLicensePlate() + " is now rented to " + c.getName());
-        
+        System.out.println("Vehicle " + v.getLicensePlate() + " is now rented to " + c.getName());
+
         return newRes;
     }
 
@@ -42,11 +42,6 @@ public class RentalAgent extends Employee {
             v.setStatus(AVAILABLE);
             System.out.println("Vehicle " + v.getLicensePlate() + " is now available.");
         }
-    }
-
-    public void generateEstimateCost(Vehicle v, int days) {
-        double total = v.getDailyRate() * days;
-        System.out.println("Estimated cost for vehicle is " + total + "TL");
     }
 
 }

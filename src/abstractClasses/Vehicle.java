@@ -82,6 +82,10 @@ public abstract class Vehicle implements Maintainable {
         setStatus(AVAILABLE);
         System.out.println("Maintenance completed : " + getBrandName() + " (" + getLicensePlate() + ")");
     }
+    
+    public abstract double calculateInsuranceCost();
+    public abstract int getDailyMileageLimit();
+    public abstract double getMileageOverageRate();
 
     @Override
     public String toString() {
@@ -89,5 +93,4 @@ public abstract class Vehicle implements Maintainable {
         return getLicensePlate() + "," + getBrandName() + "," + getMileage() + "," + getStatus() + "," + getBranchLocation();
     }
 
-    public abstract double calculateInsuranceCost();
 }
