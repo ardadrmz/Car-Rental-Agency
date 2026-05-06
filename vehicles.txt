@@ -1,2 +1,0 @@
-Luxury,34 ABC 34,Mercedes,5500,AVAILABLE,Istanbul
-SUV,06 XYZ 06,Renault,15000,AVAILABLE,Ankara
